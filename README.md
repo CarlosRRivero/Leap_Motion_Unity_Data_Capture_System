@@ -8,8 +8,8 @@ associated with the PeerJ manuscript:
 Using Motion Tracking and Serious Games**
 
 Carlos Rodrigo-Rivero, Nikola Hristov-Kalamov, Raúl Fernández-Ruiz,  
-Carlos Garre del Olmo, Agustín Álvarez-Marquina, Paulo Peixoto,  
-Daniel Palacios‑Alonso.
+Carlos Garre del Olmo, Agustín Álvarez-Marquina, Rafael Martínez-Olalla,
+Paulo Peixoto and Daniel Palacios‑Alonso.
 
 ---
 
