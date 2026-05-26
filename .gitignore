@@ -45,3 +45,6 @@ Users/
 .env
 .env.*
 !.env.example
+
+# Users
+Users.zip

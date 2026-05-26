@@ -6,7 +6,7 @@
 >
 > Carlos Rodrigo-Rivero, Nikola Hristov-Kalamov, Raúl Fernández-Ruiz, Carlos Garre del Olmo, Agustín Álvarez-Marquina, Paulo Peixoto, Daniel Palacios-Alonso (corresponding author).
 >
-> Submitted to *PeerJ Computer Science* (2025).
+> Submitted to *PeerJ Computer Science* (2026).
 
 Project website: **https://motioninsighthub.web.app/**
 Persistent data DOI: **https://doi.org/10.5281/zenodo.19892935**
@@ -33,7 +33,6 @@ The data and code allow independent researchers to:
 ├── LICENSE                  # CC-BY-4.0 license
 ├── CITATION.cff             # Machine-readable citation metadata
 ├── requirements.txt         # Python dependencies for the analysis pipeline
-├── Users.zip                # Anonymized per-participant motion-capture dataset (CSV)
 └── code/                    # Python analysis and visualization pipeline
     ├── analyze_exercises.py
     ├── create_ml_plots.py
@@ -73,7 +72,9 @@ Disease severity of the non-normative group (Hoehn & Yahr scale):
 
 `S_PD = {1.0: 6, 1.5: 3, 2.0: 8, 3.0: 4}`
 
-### File layout (inside `Users.zip`)
+### File layout (zenodo dataset)
+
+Zenodo Dataset must have the following file structure:
 
 ```
 Users/
@@ -103,7 +104,7 @@ Users/
 
 ## Code information
 
-The `code/` folder contains the Python pipeline that ingests the raw CSV recordings in `Users.zip` and produces the kinematic plots, demographic figures, usability summaries, and machine-learning results reported in the manuscript.
+The `code/` folder contains the Python pipeline that ingests the raw CSV recordings in Zenodo (must be downloaded locally in order to use them) and produces the kinematic plots, demographic figures, usability summaries, and machine-learning results reported in the manuscript.
 
 | Script                          | Purpose                                                      |
 |---------------------------------|--------------------------------------------------------------|
@@ -151,7 +152,7 @@ For data acquisition (only if rebuilding the exergames):
 ```bash
 git clone https://github.com/CarlosRRivero/Leap_Motion_Unity_Data_Capture_System.git
 cd Leap_Motion_Unity_Data_Capture_System
-unzip Users.zip      # extracts Users/<participant_id>/exercise_*.csv
+# extracts Users from Zenodo and copy them such as Users/<participant_id>/exercise_*.csv
 ```
 
 ### 2. Install the Python dependencies
@@ -190,7 +191,7 @@ python plot_showcase.py
 python create_ml_plots.py
 ```
 
-Each script reads from `../Users/` (the unzipped dataset) and writes its outputs to a `Plots/` folder created alongside the script. Adjust paths in `plot_utils.py` if your dataset is located elsewhere.
+Each script reads from `../Users/` (the zenodo dataset) and writes its outputs to a `Plots/` folder created alongside the script. Adjust paths in `plot_utils.py` if your dataset is located elsewhere.
 
 ---
 
@@ -211,7 +212,7 @@ A succinct summary of the analysis pipeline (full details in the manuscript):
 If you use this dataset or code, please cite:
 
 ```bibtex
-@article{rodrigorivero2025dyskinesia,
+@article{rodrigorivero2026dyskinesia,
   author  = {Rodrigo-Rivero, Carlos and Hristov-Kalamov, Nikola and
              Fern{\'a}ndez-Ruiz, Ra{\'u}l and Garre del Olmo, Carlos and
              {\'A}lvarez-Marquina, Agust{\'i}n and Peixoto, Paulo and
@@ -219,7 +220,7 @@ If you use this dataset or code, please cite:
   title   = {A Technical Framework for Detecting Dyskinesia in {P}arkinson's
              Disease Using Motion Tracking and Serious Games},
   journal = {PeerJ Computer Science},
-  year    = {2025},
+  year    = {2026},
   note    = {Submitted}
 }
 ```

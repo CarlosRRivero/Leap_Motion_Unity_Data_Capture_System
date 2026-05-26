@@ -1,17 +1,17 @@
 # Analysis pipeline
 
-Python scripts that reproduce every figure and machine-learning result reported in the manuscript. The scripts read the dataset from `../Users/` (the unzipped contents of `Users.zip` in the repository root) and write their outputs to `../Plots/` (created on first run).
+Python scripts that reproduce every figure and machine-learning result reported in the manuscript. The scripts read the dataset from `../Users/` (downloaded separately from Zenodo — see the top-level [`README.md`](../README.md)) and write their outputs to `../Plots/` (created on first run).
 
 ## Prerequisites
 
 - Python ≥ 3.9
 - Dependencies from the top-level `requirements.txt` (`pip install -r ../requirements.txt`)
+- The dataset extracted into `../Users/` (download from <https://doi.org/10.5281/zenodo.19892935>)
 
 ## Quick start
 
 ```bash
-# from the repository root
-unzip Users.zip
+# from the repository root, after placing the Zenodo dataset in ./Users/
 cd code
 python plot_demographics.py   # Figure 7
 python plot_sus.py            # Figure 8
@@ -50,4 +50,6 @@ All scripts expect to be launched from this directory (`code/`). They derive eve
 
 ## Output
 
-Generated artefacts live in `../Plots/<topic>/` (created on demand). To reproduce the manuscript figures in the same naming scheme used by the LaTeX source, run the scripts above in order — file names match those referenced by `\includegraphics` in the paper.
+Generated artefacts live in `../Plots/<topic>/` (created on demand). To reproduce the manuscript figures in the same naming scheme used by the LaTeX source, run the scripts above in order — file names match those referenced by `\includegraphics` in the paper. 
+
+All the graphics can be checked in https://motioninsighthub.web.app
