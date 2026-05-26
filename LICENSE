@@ -1,0 +1,39 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2025 Carlos Rodrigo-Rivero, Nikola Hristov-Kalamov, Raúl Fernández-Ruiz,
+Carlos Garre del Olmo, Agustín Álvarez-Marquina, Paulo Peixoto, Daniel Palacios-Alonso.
+
+This work — including the anonymized motion-capture dataset and the accompanying
+analysis source code — is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+You are free to:
+
+  - Share — copy and redistribute the material in any medium or format.
+  - Adapt — remix, transform, and build upon the material for any purpose,
+    even commercially.
+
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+Under the following terms:
+
+  - Attribution — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable
+    manner, but not in any way that suggests the licensor endorses you or your use.
+
+No additional restrictions — You may not apply legal terms or technological
+measures that legally restrict others from doing anything the license permits.
+
+For the full legal code, see:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+For a human-readable summary, see:
+https://creativecommons.org/licenses/by/4.0/
+
+Suggested citation when re-using this dataset or code:
+
+  Rodrigo-Rivero, C., Hristov-Kalamov, N., Fernández-Ruiz, R., Garre del Olmo, C.,
+  Álvarez-Marquina, A., Peixoto, P., & Palacios-Alonso, D. (2025).
+  A Technical Framework for Detecting Dyskinesia in Parkinson's Disease Using
+  Motion Tracking and Serious Games. PeerJ Computer Science (submitted).
+  https://github.com/CarlosRRivero/Leap_Motion_Unity_Data_Capture_System

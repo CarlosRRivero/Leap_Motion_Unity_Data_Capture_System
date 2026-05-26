@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+build/
+dist/
+*.whl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Generated outputs
+code/Plots/
+code/Output/
+code/_build/
+code/__pycache__/
+*.log
+*.tmp
+
+# Local dataset extracts (do NOT commit the unzipped CSVs — re-extract from Users.zip)
+Users/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example

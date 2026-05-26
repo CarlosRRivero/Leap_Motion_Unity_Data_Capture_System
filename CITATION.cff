@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite the manuscript below."
+title: "Leap Motion Unity Data Capture System: anonymized motion-capture dataset and analysis code for the detection of dyskinesia in Parkinson's disease"
+type: dataset
+authors:
+  - family-names: "Rodrigo-Rivero"
+    given-names: "Carlos"
+    affiliation: "Universidad Rey Juan Carlos"
+  - family-names: "Hristov-Kalamov"
+    given-names: "Nikola"
+    affiliation: "Universidad Rey Juan Carlos"
+  - family-names: "Fernández-Ruiz"
+    given-names: "Raúl"
+    affiliation: "Universidad Rey Juan Carlos"
+  - family-names: "Garre del Olmo"
+    given-names: "Carlos"
+    affiliation: "Universidad Rey Juan Carlos"
+  - family-names: "Álvarez-Marquina"
+    given-names: "Agustín"
+    affiliation: "Universidad Politécnica de Madrid"
+  - family-names: "Peixoto"
+    given-names: "Paulo"
+    affiliation: "University of Coimbra"
+  - family-names: "Palacios-Alonso"
+    given-names: "Daniel"
+    email: "daniel.palacios@urjc.es"
+    affiliation: "Universidad Rey Juan Carlos / Universidad Politécnica de Madrid"
+    orcid: "https://orcid.org/0000-0002-2926-1668"
+license: CC-BY-4.0
+repository-code: "https://github.com/CarlosRRivero/Leap_Motion_Unity_Data_Capture_System"
+url: "https://motioninsighthub.web.app/"
+keywords:
+  - Parkinson's disease
+  - dyskinesia
+  - Leap Motion Controller
+  - serious games
+  - motion tracking
+  - machine learning
+  - digital biomarkers
+preferred-citation:
+  type: article
+  title: "A Technical Framework for Detecting Dyskinesia in Parkinson's Disease Using Motion Tracking and Serious Games"
+  authors:
+    - family-names: "Rodrigo-Rivero"
+      given-names: "Carlos"
+    - family-names: "Hristov-Kalamov"
+      given-names: "Nikola"
+    - family-names: "Fernández-Ruiz"
+      given-names: "Raúl"
+    - family-names: "Garre del Olmo"
+      given-names: "Carlos"
+    - family-names: "Álvarez-Marquina"
+      given-names: "Agustín"
+    - family-names: "Peixoto"
+      given-names: "Paulo"
+    - family-names: "Palacios-Alonso"
+      given-names: "Daniel"
+  journal: "PeerJ Computer Science"
+  year: 2025
+  notes: "Manuscript submitted for publication."
