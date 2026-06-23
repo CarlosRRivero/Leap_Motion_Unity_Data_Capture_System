@@ -534,37 +534,38 @@ def plot_grip(n_folder, p_folder, age_label, age_key, info, out_dir):
     ax_stat.axis("off")
     rows_data = []
     for label_short, df, lc, rc in [
-        ("Normative", n_df, NORM_L_C, NORM_R_C),
-        ("Non-norm",  p_df, NN_L_C,   NN_R_C),
+        ("Norm",     n_df, NORM_L_C, NORM_R_C),
+        ("Non-norm", p_df, NN_L_C,   NN_R_C),
     ]:
         for hand_label, col, c in [
-            ("Left",  "Left_hand_grab_strength",  lc),
-            ("Right", "Right_hand_grab_strength", rc),
+            ("L", "Left_hand_grab_strength",  lc),
+            ("R", "Right_hand_grab_strength", rc),
         ]:
             arr = num(df, col).dropna().values
             if len(arr) < 8:
-                rows_data.append([f"{label_short}\n{hand_label}", "—", "—", "—", "—"])
+                rows_data.append([f"{label_short} {hand_label}", "-", "-", "-", "-"])
                 continue
             xf, psd = _grip_fft(arr)
             peak_hz = xf[np.argmax(psd)] if psd.max() > 0 else 0.0
             rows_data.append([
-                f"{label_short}\n{hand_label}",
+                f"{label_short} {hand_label}",
                 f"{np.mean(arr):.3f}",
                 f"{np.std(arr):.3f}",
-                f"{arr.min():.2f} – {arr.max():.2f}",
-                f"{peak_hz:.2f} Hz",
+                f"{arr.min():.2f}-{arr.max():.2f}",
+                f"{peak_hz:.2f}",
             ])
 
-    col_labels = ["Group\nHand", "Mean", "Std Dev", "Range", "Peak freq"]
+    # Single-line labels/headers so text fits inside the cells at large font.
+    col_labels = ["Group", "Mean", "Std", "Range", "Peak (Hz)"]
     table = ax_stat.table(
         cellText=rows_data,
         colLabels=col_labels,
         cellLoc="center",
         loc="center",
-        bbox=[0.0, 0.05, 1.0, 0.90],
+        bbox=[0.0, 0.08, 1.0, 0.82],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(8.5)
+    table.set_fontsize(11)
     # Colour header row
     for j in range(len(col_labels)):
         table[(0, j)].set_facecolor("#ECEFF1")
@@ -581,7 +582,8 @@ def plot_grip(n_folder, p_folder, age_label, age_key, info, out_dir):
         f"Exercise 2 \u2014 Grip Analysis  [{age_label} yr]",
         fontsize=13, fontweight="bold"
     )
-    fig.tight_layout()
+    # Reserve top margin so the suptitle does not collide with panel titles.
+    fig.tight_layout(rect=[0, 0, 1, 0.93])
     fname = f"exercise2_showcase_grip_{age_key}.png"
     fig.savefig(os.path.join(out_dir, fname), dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -706,9 +708,9 @@ def plot_trajectory(n_folder, p_folder, ex_num, age_label, age_key, info, out_di
 
     # Reserve a narrow column on the right for the colorbar
     fig = plt.figure(figsize=(15, 5.5))
-    ax1 = fig.add_axes([0.04, 0.12, 0.43, 0.78])
-    ax2 = fig.add_axes([0.52, 0.12, 0.43, 0.78])
-    cax = fig.add_axes([0.96, 0.20, 0.015, 0.60])
+    ax1 = fig.add_axes([0.04, 0.12, 0.43, 0.72])
+    ax2 = fig.add_axes([0.52, 0.12, 0.43, 0.72])
+    cax = fig.add_axes([0.96, 0.20, 0.015, 0.56])
 
     for ax, px, py, folder, rocks in [
         (ax1, n_px, n_py, n_folder, n_rocks),
@@ -732,7 +734,7 @@ def plot_trajectory(n_folder, p_folder, ex_num, age_label, age_key, info, out_di
 
     fig.suptitle(
         f"Exercise {ex_num} \u2014 Plane Trajectory  [{age_label} yr]",
-        fontsize=12, fontweight="bold", y=0.98
+        fontsize=12, fontweight="bold", y=0.99
     )
     fname = f"exercise{ex_num}_showcase_trajectory_{age_key}.png"
     fig.savefig(os.path.join(out_dir, fname), dpi=150, bbox_inches="tight")

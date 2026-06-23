@@ -11,7 +11,6 @@ Steps:
   2. Run speed / orientation / position / grip plots for each exercise.
   3. Run SUS plot.
   4. Run demographics with the two excluded users removed from the CSV.
-  5. Copy all results to web/src/assets/plots/.
 
 Usage:
   python generate_plots_v2.py

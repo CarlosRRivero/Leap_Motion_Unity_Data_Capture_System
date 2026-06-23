@@ -106,7 +106,8 @@ def run(out_dir=None):
     # Annotate total respondents
     n_total = int(totals.max())
     ax.text(0.01, 0.98, f"n = {n_total} respondents per question",
-            transform=ax.transAxes, fontsize=9, va="top", color="gray")
+            transform=ax.transAxes, fontsize=9, va="top", color="black",
+            fontweight="bold")
 
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "sus_response_distribution.png"), dpi=150, bbox_inches="tight")
