@@ -461,7 +461,7 @@ def _fft_both_hands(ax, df_n, df_p, fps=FPS, max_hz=10.0):
         ("Left_hand_grab_strength",  df_p, NN_L_C,   "NN — Left",   "-"),
         ("Right_hand_grab_strength", df_p, NN_R_C,   "NN — Right",  "--"),
     ]
-    for col, df, c, lbl, ls in pairs:
+    for i, (col, df, c, lbl, ls) in enumerate(pairs):
         arr = num(df, col).dropna().values
         if len(arr) < 8:
             continue
@@ -474,8 +474,11 @@ def _fft_both_hands(ax, df_n, df_p, fps=FPS, max_hz=10.0):
                 linestyle=ls, label=lbl)
         peak = xf[np.argmax(psd)]
         ax.axvline(peak, color=c, linestyle=":", linewidth=1.0, alpha=0.60)
-        ax.text(peak + 0.08, psd_norm.max() * 0.90 if psd_norm.max() > 0 else 0.90,
-                f"{peak:.1f} Hz", fontsize=7.5, color=c, fontweight="bold")
+        # Stagger the peak labels vertically so neighbouring peaks do not collide.
+        y_lbl = 1.04 - i * 0.13
+        x_lbl = min(peak + 0.18, max_hz - 1.4)
+        ax.text(x_lbl, y_lbl, f"{peak:.1f} Hz", fontsize=7.5, color=c,
+                fontweight="bold", va="top")
 
 
 def plot_grip(n_folder, p_folder, age_label, age_key, info, out_dir):
@@ -563,6 +566,7 @@ def plot_grip(n_folder, p_folder, age_label, age_key, info, out_dir):
         cellLoc="center",
         loc="center",
         bbox=[0.0, 0.08, 1.0, 0.82],
+        colWidths=[0.30, 0.15, 0.15, 0.22, 0.18],  # wider "Group" so "Non-norm L/R" fit
     )
     table.auto_set_font_size(False)
     table.set_fontsize(11)

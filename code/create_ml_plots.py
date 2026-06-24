@@ -399,10 +399,10 @@ def loocv_metrics_as_cv_dict(m):
 def _draw_cm(ax, cm, title, bg_color):
     im = ax.imshow(cm, interpolation="nearest", cmap="Blues", vmin=0)
     ax.set_title(title, fontsize=10, fontweight="bold", pad=6)
-    ax.set_xlabel("Predicted", fontsize=8)
-    ax.set_ylabel("True", fontsize=8)
-    ax.set_xticks([0, 1]); ax.set_xticklabels(CLASS_NAMES, fontsize=7)
-    ax.set_yticks([0, 1]); ax.set_yticklabels(CLASS_NAMES, fontsize=7,
+    ax.set_xlabel("Predicted", fontsize=10)
+    ax.set_ylabel("True", fontsize=10)
+    ax.set_xticks([0, 1]); ax.set_xticklabels(CLASS_NAMES, fontsize=9)
+    ax.set_yticks([0, 1]); ax.set_yticklabels(CLASS_NAMES, fontsize=9,
                                                 rotation=90, va="center")
     thresh = cm.max() / 2.0
     for i in range(2):
@@ -550,6 +550,8 @@ def create_feature_importance_figure(fi_data, out_dir, top_n=5):
         ax.set_title(f"{data['label']}\nTop {top_n} Features",
                      fontsize=11, fontweight="bold")
         ax.set_xlim(0, max(top_imp) * 1.30)
+        # Limit the number of x ticks so the values never overlap (narrow ranges).
+        ax.locator_params(axis="x", nbins=4)
         ax.grid(axis="x", linestyle="--", alpha=0.35)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)

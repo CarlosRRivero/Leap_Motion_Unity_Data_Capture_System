@@ -99,13 +99,15 @@ def run(out_dir=None):
     ax.set_title("SUS – Response Distribution per Question",
                  fontsize=13, fontweight="bold", pad=12)
     ax.legend(loc="upper right", fontsize=9, framealpha=0.9)
-    ax.set_ylim(0, 102)
+    # Headroom above the 100% bars so the legend and the "n =" note do not overlap them.
+    ax.set_ylim(0, 118)
+    ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.grid(axis="y", linestyle="--", alpha=0.3)
     ax.tick_params(axis="both", labelsize=10)
 
-    # Annotate total respondents
+    # Annotate total respondents (sits in the headroom, above the bars)
     n_total = int(totals.max())
-    ax.text(0.01, 0.98, f"n = {n_total} respondents per question",
+    ax.text(0.01, 0.99, f"n = {n_total} respondents per question",
             transform=ax.transAxes, fontsize=9, va="top", color="black",
             fontweight="bold")
 
@@ -148,39 +150,43 @@ def run(out_dir=None):
     grade, adj = _grade(sus_score)
 
     grade_bands = [
-        (0,   25,   "#d32f2f", "F\n0–25"),
-        (25,  51,   "#ef6c00", "D\n26–51"),
-        (51,  68,   "#fbc02d", "C\n52–68"),
-        (68,  80.3, "#7cb342", "B\n69–80"),
-        (80.3,90,   "#388e3c", "A\n81–90"),
-        (90,  100,  "#1b5e20", "A+\n91–100"),
+        (0,   25,   "#d32f2f", "F",  "0–25"),
+        (25,  51,   "#ef6c00", "D",  "26–51"),
+        (51,  68,   "#fbc02d", "C",  "52–68"),
+        (68,  80.3, "#7cb342", "B",  "69–80"),
+        (80.3,90,   "#388e3c", "A",  "81–90"),
+        (90,  100,  "#1b5e20", "A+", "91–100"),
     ]
 
     ax_gauge.set_xlim(0, 100)
-    ax_gauge.set_ylim(-0.2, 2.0)
+    ax_gauge.set_ylim(-0.6, 2.0)
     ax_gauge.axis("off")
 
-    for lo, hi, col, lbl in grade_bands:
+    for lo, hi, col, letter, rng in grade_bands:
         ax_gauge.barh(0.5, hi - lo, left=lo, height=0.55,
                       color=col, alpha=0.85, edgecolor="white", linewidth=1.5)
-        ax_gauge.text((lo + hi) / 2, 0.5, lbl,
-                      ha="center", va="center", fontsize=6.5,
-                      color="white", fontweight="bold")
+        # Grade letter inside the band (black for legibility)
+        ax_gauge.text((lo + hi) / 2, 0.5, letter,
+                      ha="center", va="center", fontsize=9,
+                      color="black", fontweight="bold")
+        # Numeric range placed below the band so it is never cramped
+        ax_gauge.text((lo + hi) / 2, 0.05, rng,
+                      ha="center", va="top", fontsize=6.5, color="black")
 
-    # Needle
-    ax_gauge.axvline(sus_score, ymin=0.15, ymax=0.85,
+    # Needle — stops at the marker so it does not cross the score label
+    ax_gauge.axvline(sus_score, ymin=0.27, ymax=0.615,
                      color="black", linewidth=3.5, zorder=5)
     ax_gauge.plot(sus_score, 1.0, marker="v", markersize=16,
                   color="black", zorder=6)
-    ax_gauge.text(sus_score, 1.35,
+    ax_gauge.text(sus_score, 1.40,
                   f"SUS Score\n{sus_score:.1f}",
                   ha="center", va="center", fontsize=14,
                   fontweight="bold", color="black")
-    ax_gauge.text(sus_score, 1.75,
+    ax_gauge.text(sus_score, 1.80,
                   f"{grade}  –  {adj}",
                   ha="center", va="center", fontsize=11,
                   fontweight="bold",
-                  color=grade_bands[[b[3].startswith(grade) for b in grade_bands].index(True)][2])
+                  color=grade_bands[[b[3] == grade for b in grade_bands].index(True)][2])
 
     ax_gauge.set_title("Overall SUS Score", fontsize=11, fontweight="bold")
 

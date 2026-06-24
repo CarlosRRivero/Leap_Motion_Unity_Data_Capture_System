@@ -33,11 +33,11 @@ with a tight bounding box (data-table fonts are capped so the cells do not overf
 
 ```bash
 cd code
-python regenerate_hq_figures.py 1.7 plot_groups_sturges.py plot_sus.py \
+python regenerate_hq_figures.py 1.4 plot_groups_sturges.py plot_sus.py \
        plot_showcase.py create_ml_plots.py
 ```
 
-The first argument is the font scale factor (default `1.7`). This reproduces
+The first argument is the font scale factor (default `1.4`). This reproduces
 Figures 7–16 with the publication-grade typography used in the manuscript.
 
 ## Script reference

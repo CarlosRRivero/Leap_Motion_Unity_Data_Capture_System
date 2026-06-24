@@ -33,7 +33,7 @@ from matplotlib.text import Text
 
 # ── Parse optional leading SCALE argument ──────────────────────────────────────
 args = sys.argv[1:]
-SCALE = 1.7
+SCALE = 1.4
 if args:
     try:
         SCALE = float(args[0])
