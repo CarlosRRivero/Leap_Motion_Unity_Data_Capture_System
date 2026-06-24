@@ -13,8 +13,8 @@ Usage:
     python regenerate_hq_figures.py [SCALE] <script1.py> <script2.py> ...
 
 If the first argument parses as a float it is used as the font SCALE factor
-(default 2.0). Example:
-    python regenerate_hq_figures.py 2.0 plot_groups_sturges.py plot_sus.py \
+(default 1.7). Example:
+    python regenerate_hq_figures.py 1.7 plot_groups_sturges.py plot_sus.py \
         plot_showcase.py create_ml_plots.py
 """
 import sys
@@ -33,7 +33,7 @@ from matplotlib.text import Text
 
 # ── Parse optional leading SCALE argument ──────────────────────────────────────
 args = sys.argv[1:]
-SCALE = 2.0
+SCALE = 1.7
 if args:
     try:
         SCALE = float(args[0])

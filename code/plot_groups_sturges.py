@@ -573,7 +573,11 @@ def plot_gender_by_group(age_map, sex_map, edges, labels, out_dir):
     ax.set_xlabel("Age Group (years)", fontsize=11)
     ax.set_ylabel("Number of Participants", fontsize=11)
     ax.set_title("Gender Distribution by Age Group and Cohort", fontsize=12, fontweight="bold")
-    ax.legend(fontsize=9, loc="upper right")
+    # Headroom so the legend clears the tallest bars (avoids overlap at large fonts).
+    _ymax = max([norm_m[i] + norm_f[i] for i in range(n_groups)] +
+                [nn_m[i] + nn_f[i] for i in range(n_groups)] + [1])
+    ax.set_ylim(0, _ymax * 1.35)
+    ax.legend(fontsize=9, loc="upper left")
     ax.grid(axis="y", linestyle="--", alpha=0.35)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)

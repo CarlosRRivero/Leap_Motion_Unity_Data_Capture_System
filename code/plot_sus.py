@@ -129,7 +129,9 @@ def run(out_dir=None):
                      f"{m:.2f}", ha="center", va="bottom", fontsize=8)
 
     ax_bars.axhline(3, color="gray", linestyle="--", linewidth=1.2, label="Neutral (3.0)")
-    ax_bars.set_ylim(1, 5.4)
+    # Headroom above the tallest bar so the legend does not overlap the bars.
+    ax_bars.set_ylim(1, 6.4)
+    ax_bars.set_yticks([1, 2, 3, 4, 5])
     ax_bars.set_xlabel("Question", fontsize=11)
     ax_bars.set_ylabel("Weighted mean response (1–5)", fontsize=11)
     ax_bars.set_title("Mean Response per Question", fontsize=11, fontweight="bold")
@@ -162,7 +164,7 @@ def run(out_dir=None):
         ax_gauge.barh(0.5, hi - lo, left=lo, height=0.55,
                       color=col, alpha=0.85, edgecolor="white", linewidth=1.5)
         ax_gauge.text((lo + hi) / 2, 0.5, lbl,
-                      ha="center", va="center", fontsize=8,
+                      ha="center", va="center", fontsize=6.5,
                       color="white", fontweight="bold")
 
     # Needle
