@@ -132,7 +132,7 @@ The `code/` folder contains the Python pipeline that ingests the raw CSV recordi
 - **Python** ≥ 3.9 (tested on 3.9 and 3.11)
 - The Python libraries listed in [`requirements.txt`](requirements.txt):
   - `numpy`, `pandas`, `scipy`
-  - `matplotlib`, `seaborn`
+  - `matplotlib`, `pillow`
   - `scikit-learn`
   - `openpyxl`
 

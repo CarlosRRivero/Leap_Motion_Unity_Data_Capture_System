@@ -8,18 +8,35 @@ Python scripts that reproduce every figure and machine-learning result reported 
 - Dependencies from the top-level `requirements.txt` (`pip install -r ../requirements.txt`)
 - The dataset extracted into `../Users/` (download from <https://doi.org/10.5281/zenodo.19892935>)
 
+### Data inputs
+
+The scripts read from the project root (the parent of `code/`). Besides the bulk
+recordings in `Users/`, the following companion files — provided with the dataset —
+must sit at the project root:
+
+- `Users/` — per-participant recordings (`dataCompilation*.csv`, `*_Rock_Status.csv`, `fuel*.csv`).
+- `SUS_Stats_Total.csv`, `User_Stats_Total.csv` — aggregate tables used by `plot_sus.py` and `plot_demographics.py`.
+- `users.json`, `fuel_locations.json`, and the per-participant `exercise*.json` trajectory files — participant age/sex metadata and the plane-trajectory data used by `plot_showcase.py` (the trajectory panels, Figures 13–14).
+
+If a companion file is absent the corresponding script skips that figure (it prints a
+warning rather than failing), so the remaining figures still reproduce.
+
 ## Quick start
 
 ```bash
 # from the repository root, after placing the Zenodo dataset in ./Users/
 cd code
-python plot_demographics.py   # Figure 7
-python plot_sus.py            # Figure 8
-python plot_speed.py          # Figures 9–10
-python plot_grip.py           # Figures 11–12
-python plot_showcase.py       # Figures 13–14
-python create_ml_plots.py     # Figures 15–16 (LOOCV training takes a few minutes)
+python plot_groups_sturges.py   # Figure 7   (groups_gender_distribution.png)
+python plot_sus.py              # Figure 8   (sus_response_distribution.png, sus_scores.png)
+python plot_showcase.py         # Figures 9–14 (speed, grip and trajectory showcases)
+python create_ml_plots.py       # Figures 15–16 (LOOCV training takes a few minutes)
 ```
+
+These four scripts have a `__main__` entry point and regenerate every manuscript
+figure (7–16) into `../Plots/`. The remaining `plot_*.py` modules (`plot_speed.py`,
+`plot_grip.py`, `plot_position.py`, `plot_orientation.py`, `plot_grip_freq.py`) expose a
+`run()` function that is invoked by the `generate_plots_v2.py` batch driver rather than
+run directly.
 
 All scripts expect to be launched from this directory (`code/`). They derive every other path from `__file__`, so no environment variables are required.
 
@@ -45,16 +62,17 @@ Figures 7–16 with the publication-grade typography used in the manuscript.
 | Script                          | Reproduces |
 |---------------------------------|------------|
 | `analyze_exercises.py`          | Quality filtering and descriptive statistics (Table 1 supporting numbers). |
-| `plot_speed.py`                 | Bilateral hand-speed traces (Figures 9–10). |
-| `plot_grip.py`                  | Grip-strength time series and summary panels (Figures 11–12). |
-| `plot_grip_freq.py`             | Grip-strength frequency-domain summaries. |
-| `plot_position.py`              | Palm-position statistics (per-exercise). |
-| `plot_orientation.py`           | Palm-normal orientation statistics. |
-| `plot_showcase.py`              | Per-participant trajectory showcase (Figures 13–14). |
-| `plot_demographics.py`          | Demographic distribution by age, gender, and cohort (Figure 7). |
-| `plot_groups_sturges.py`        | Alternative stratifications (Sturges, Scott, Freedman–Diaconis). |
-| `plot_sus.py`                   | SUS response distribution and overall score (Figure 8). |
-| `create_ml_plots.py`            | LOOCV training of SVM, RF, and Grouped RF; confusion matrices and Gini importance (Figures 15–16). |
+| `plot_showcase.py`              | Representative-participant showcases — speed, grip and trajectory (**Figures 9–14**). Has `__main__`. |
+| `plot_groups_sturges.py`        | Cohort gender/age distribution (**Figure 7**, `groups_gender_distribution.png`) plus alternative bin stratifications. Has `__main__`. |
+| `plot_sus.py`                   | SUS response distribution and overall score (**Figure 8**). Has `__main__`. |
+| `create_ml_plots.py`            | LOOCV training of SVM, RF, and Grouped RF; confusion matrices and Gini importance (**Figures 15–16**). Has `__main__`. |
+| `plot_speed.py`                 | Per-exercise-group hand-speed box plots. `run()` helper, invoked by `generate_plots_v2.py`. |
+| `plot_grip.py`                  | Per-exercise-group grip box plots. `run()` helper, invoked by `generate_plots_v2.py`. |
+| `plot_grip_freq.py`             | Grip-strength frequency-domain summaries. `run()` helper. |
+| `plot_position.py`              | Palm-position statistics (per-exercise). `run()` helper. |
+| `plot_orientation.py`           | Palm-normal orientation statistics. `run()` helper. |
+| `plot_demographics.py`          | Standalone demographic summaries (age/gender box & pie). Note: the manuscript's Figure 7 is produced by `plot_groups_sturges.py`. |
+| `regenerate_hq_figures.py`      | Re-runs the four figure scripts with enlarged fonts and 300 dpi (publication-quality Figures 7–16). |
 | `create_pilot_study_plots.py`   | Pilot study plots (IWINAC 2022). |
 | `generate_user_plots.py`        | Per-participant kinematic dashboards (one PNG per user, per exercise). |
 | `generate_plots_v2.py`          | Batch driver for the v2 plot set used on the MotionInsightHub web platform. |
