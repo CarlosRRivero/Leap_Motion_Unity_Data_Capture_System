@@ -54,8 +54,14 @@ sys.path.insert(0, SCRIPTS_DIR)
 import plot_utils as pu
 
 USERS_DIR  = os.path.join(PAPER_DIR, "Users")
-USERS_JSON = os.path.normpath(
-    os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "users.json")
+# Prefer the repo-bundled metadata so the script runs from the public repository
+# together with the Zenodo Users/ folder (no local web project required).
+USERS_JSON = next(
+    (p for p in (
+        os.path.join(PAPER_DIR, "metadata", "users.json"),
+        os.path.normpath(os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "users.json")),
+    ) if os.path.exists(p)),
+    os.path.join(PAPER_DIR, "metadata", "users.json"),
 )
 PLOTS_BASE = os.path.join(PAPER_DIR, "Plots")
 WEB_BASE   = os.path.normpath(

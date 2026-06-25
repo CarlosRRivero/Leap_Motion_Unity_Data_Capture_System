@@ -33,18 +33,22 @@ The data and code allow independent researchers to:
 ├── LICENSE                  # CC-BY-4.0 license
 ├── CITATION.cff             # Machine-readable citation metadata
 ├── requirements.txt         # Python dependencies for the analysis pipeline
-└── code/                    # Python analysis and visualization pipeline
-    ├── analyze_exercises.py
-    ├── create_ml_plots.py
-    ├── plot_speed.py
-    ├── plot_grip.py
-    ├── plot_position.py
-    ├── plot_orientation.py
-    ├── plot_showcase.py
-    ├── plot_sus.py
-    ├── plot_demographics.py
-    ├── plot_utils.py
-    └── ...                  # See code/README.md for the full list
+├── SUS_Stats_Total.csv      # Aggregate SUS responses (used by plot_sus.py)
+├── User_Stats_Total.csv     # Per-participant demographic summary
+├── metadata/                # Companion metadata so the pipeline runs without the web project
+│   ├── users.json           # Participant age/sex
+│   ├── fuel_locations.json  # Bonus-item positions for the trajectory panels
+│   └── trajectories/<id>/exercise{3,4,5}.json   # Plane trajectories (Figures 13–14)
+├── code/                    # Python analysis and visualization pipeline
+│   ├── analyze_exercises.py
+│   ├── create_ml_plots.py
+│   ├── plot_showcase.py
+│   ├── plot_groups_sturges.py
+│   ├── plot_sus.py
+│   ├── regenerate_hq_figures.py
+│   ├── plot_utils.py
+│   └── ...                  # See code/README.md for the full list
+└── Users/                   # (you add this) per-participant recordings from Zenodo
 ```
 
 > **Unity exergames.** The Unity project that records the data (Unity 2022.3.10f1, Leap Motion SDK Orion 4.1) is large and is not stored in this repository. A compiled release of the data-acquisition application, together with build instructions, is available from the corresponding author on request and at the project website.

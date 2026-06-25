@@ -44,9 +44,26 @@ sys.path.insert(0, SCRIPTS_DIR)
 import plot_utils as pu
 
 USERS_DIR  = os.path.join(PAPER_DIR, "Users")
-USERS_JSON = os.path.normpath(
-    os.path.join(PAPER_DIR, "MotionInsightHub", "web",
-                 "src", "assets", "data", "users.json")
+
+
+def _first_existing(*paths):
+    """Return the first path that exists, else the last one.
+
+    Repo-bundled metadata (under ``metadata/``) is listed first so the pipeline
+    runs from the public repository together with the Zenodo ``Users/`` folder,
+    without needing the author's local MotionInsightHub web project.
+    """
+    for p in paths:
+        if p and os.path.exists(p):
+            return p
+    return paths[-1]
+
+
+METADATA_DIR = os.path.join(PAPER_DIR, "metadata")
+USERS_JSON = _first_existing(
+    os.path.join(METADATA_DIR, "users.json"),
+    os.path.normpath(os.path.join(PAPER_DIR, "MotionInsightHub", "web",
+                                  "src", "assets", "data", "users.json")),
 )
 PLOTS_DIR = os.path.join(PAPER_DIR, "Plots", "showcase")
 WEB_PLOTS = os.path.normpath(
@@ -59,11 +76,13 @@ NORM_C      = "#2196F3"
 NN_C        = "#E64A19"
 FPS         = 44.0
 
-USERS_DATA_DIR = os.path.normpath(
-    os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "users")
+USERS_DATA_DIR = _first_existing(
+    os.path.join(METADATA_DIR, "trajectories"),
+    os.path.normpath(os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "users")),
 )
-FUEL_JSON = os.path.normpath(
-    os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "fuel_locations.json")
+FUEL_JSON = _first_existing(
+    os.path.join(METADATA_DIR, "fuel_locations.json"),
+    os.path.normpath(os.path.join(PAPER_DIR, "MotionInsightHub", "web", "src", "assets", "data", "fuel_locations.json")),
 )
 
 # Age bands matching the 3-division scheme

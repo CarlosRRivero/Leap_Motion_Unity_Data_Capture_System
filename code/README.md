@@ -10,16 +10,25 @@ Python scripts that reproduce every figure and machine-learning result reported 
 
 ### Data inputs
 
-The scripts read from the project root (the parent of `code/`). Besides the bulk
-recordings in `Users/`, the following companion files — provided with the dataset —
-must sit at the project root:
+Everything the scripts need ships with this repository **except the bulk recordings**,
+which you download once from Zenodo:
 
-- `Users/` — per-participant recordings (`dataCompilation*.csv`, `*_Rock_Status.csv`, `fuel*.csv`).
-- `SUS_Stats_Total.csv`, `User_Stats_Total.csv` — aggregate tables used by `plot_sus.py` and `plot_demographics.py`.
-- `users.json`, `fuel_locations.json`, and the per-participant `exercise*.json` trajectory files — participant age/sex metadata and the plane-trajectory data used by `plot_showcase.py` (the trajectory panels, Figures 13–14).
+- `Users/` — per-participant recordings (`dataCompilation*.csv`, `*_Rock_Status.csv`,
+  `fuel*.csv`). Download from <https://doi.org/10.5281/zenodo.19892935> and extract so
+  the per-participant folders sit directly under `Users/` at the repository root.
 
-If a companion file is absent the corresponding script skips that figure (it prints a
-warning rather than failing), so the remaining figures still reproduce.
+The remaining companion files are already included in the repository root, so no extra
+download is needed for them:
+
+- `SUS_Stats_Total.csv`, `User_Stats_Total.csv` — aggregate tables (`plot_sus.py`, `plot_demographics.py`).
+- `metadata/users.json` — participant age/sex metadata.
+- `metadata/fuel_locations.json` and `metadata/trajectories/<id>/exercise{3,4,5}.json` — plane-trajectory data for the showcase trajectory panels (Figures 13–14).
+
+A full reproduction therefore only requires: clone the repository, extract the Zenodo
+`Users/` folder at the root, `pip install -r requirements.txt`, then run the four
+scripts above. (The scripts also fall back to the author's local web project if it is
+present, but it is not required.) If a companion file is ever missing, the corresponding
+script skips just that figure with a warning instead of failing.
 
 ## Quick start
 
