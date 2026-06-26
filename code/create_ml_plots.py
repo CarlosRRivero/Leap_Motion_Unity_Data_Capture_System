@@ -546,7 +546,7 @@ def create_feature_importance_figure(fi_data, out_dir, top_n=5):
 
         ax.set_yticks(range(top_n))
         ax.set_yticklabels(top_names, fontsize=10)
-        ax.set_xlabel("Mean decrease in impurity (Gini)", fontsize=9)
+        ax.set_xlabel("Mean decrease in impurity (Gini)", fontsize=11)
         ax.set_title(f"{data['label']}\nTop {top_n} Features",
                      fontsize=11, fontweight="bold")
         ax.set_xlim(0, max(top_imp) * 1.30)
