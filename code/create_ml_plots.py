@@ -399,10 +399,10 @@ def loocv_metrics_as_cv_dict(m):
 def _draw_cm(ax, cm, title, bg_color):
     im = ax.imshow(cm, interpolation="nearest", cmap="Blues", vmin=0)
     ax.set_title(title, fontsize=10, fontweight="bold", pad=6)
-    ax.set_xlabel("Predicted", fontsize=10)
-    ax.set_ylabel("True", fontsize=10)
-    ax.set_xticks([0, 1]); ax.set_xticklabels(CLASS_NAMES, fontsize=9)
-    ax.set_yticks([0, 1]); ax.set_yticklabels(CLASS_NAMES, fontsize=9,
+    ax.set_xlabel("Predicted", fontsize=12)
+    ax.set_ylabel("True", fontsize=12)
+    ax.set_xticks([0, 1]); ax.set_xticklabels(CLASS_NAMES, fontsize=11)
+    ax.set_yticks([0, 1]); ax.set_yticklabels(CLASS_NAMES, fontsize=11,
                                                 rotation=90, va="center")
     thresh = cm.max() / 2.0
     for i in range(2):
