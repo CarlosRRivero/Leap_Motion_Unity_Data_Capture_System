@@ -239,6 +239,18 @@ This work was supported by the **State Research Agency of Spain** (*Agencia Esta
 
 ---
 
+## Use of AI assistance
+
+This codebase was written by the authors and subsequently **reviewed and lightly refined
+with the help of AI assistants** — a comprehensive review for bugs, edge cases and
+performance (OpenAI ChatGPT), plus readability/comment and figure-formatting improvements.
+Every suggestion was reviewed and validated by the authors; the analysis logic,
+parameters, and reported results are the authors' own, and the AI was **not** used to
+design the analysis or generate the results. This mirrors the "Use of Artificial
+Intelligence" disclosure in the manuscript.
+
+---
+
 ## License
 
 This dataset and code are released under the **Creative Commons Attribution 4.0 International (CC-BY-4.0)** license, consistent with PeerJ's open-access policy. See [`LICENSE`](LICENSE) for the full text.
